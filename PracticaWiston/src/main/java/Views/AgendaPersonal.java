@@ -5,30 +5,21 @@
  */
 package Views;
 
-import POJO.Activos;
-;
+import POJO.Persona;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-public class MainFrame extends javax.swing.JFrame {
-  private DefaultTableModel tablamodelo;
-  private Activos activacion;
-  static  Map<Integer, Activos.TipoActivos> tipaso = new HashMap<Integer , Activos.TipoActivos>();
-  static{
-      tipaso.put(1, Activos.TipoActivos.EDIFICIO);
-      tipaso.put(2, Activos.TipoActivos.VEHICULO);
-      tipaso.put(3, Activos.TipoActivos.MAQUINARIA);
-      tipaso.put(4, Activos.TipoActivos.MOBILIARIA);
-      tipaso.put(5, Activos.TipoActivos.EQUIPODEOFICINA);
-  }
+
+/**
+ *
+ * @author MSI
+ */
+public class AgendaPersonal extends javax.swing.JFrame {
+    ArrayList<Persona> lista = new ArrayList<Persona>();
+
     /**
-     * Creates new form MainFrame
+     * Creates new form AgendaPersonal
      */
-    public MainFrame() {
+    public AgendaPersonal() {
         initComponents();
     }
 
@@ -43,52 +34,44 @@ public class MainFrame extends javax.swing.JFrame {
         java.awt.GridBagConstraints gridBagConstraints;
 
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tabluca = new javax.swing.JTable();
+        btnAgregar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        txtValorActivo = new javax.swing.JTextField();
+        txtApellidos = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        cmbTipoActivo = new javax.swing.JComboBox<>();
+        txtEdad = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        txtValorSalvamento = new javax.swing.JTextField();
+        txtNumero = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
-        btnCalcular = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablita = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
+        java.awt.FlowLayout flowLayout1 = new java.awt.FlowLayout();
+        flowLayout1.setAlignOnBaseline(true);
+        jPanel1.setLayout(flowLayout1);
 
-        tabluca.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Nombre", "1", "2", " 3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"
+        btnAgregar.setText("Agregar");
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarActionPerformed(evt);
             }
-        ));
-        jScrollPane1.setViewportView(tabluca);
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
-        );
+        });
+        jPanel1.add(btnAgregar);
 
         getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
-        jPanel2.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
         jLabel1.setText("Nombre");
-        jPanel2.add(jLabel1, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        jPanel2.add(jLabel1, gridBagConstraints);
 
         txtNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -97,85 +80,98 @@ public class MainFrame extends javax.swing.JFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 80;
+        gridBagConstraints.ipadx = 60;
         jPanel2.add(txtNombre, gridBagConstraints);
 
-        jLabel2.setText("Valor Activo");
+        jLabel2.setText("Apellidos");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         jPanel2.add(jLabel2, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 80;
-        jPanel2.add(txtValorActivo, gridBagConstraints);
+        gridBagConstraints.ipadx = 60;
+        jPanel2.add(txtApellidos, gridBagConstraints);
 
-        jLabel3.setText("Tipo Activo");
+        jLabel3.setText("Edad");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         jPanel2.add(jLabel3, gridBagConstraints);
-
-        cmbTipoActivo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Edificio", "Vehiculo", "Maquinaria", "Mobiliria", "Equipo oficina" }));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.ipadx = 60;
-        jPanel2.add(cmbTipoActivo, gridBagConstraints);
+        jPanel2.add(txtEdad, gridBagConstraints);
 
-        jLabel4.setText("Valor Salvamento");
+        jLabel4.setText("Numero");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         jPanel2.add(jLabel4, gridBagConstraints);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipadx = 80;
-        jPanel2.add(txtValorSalvamento, gridBagConstraints);
+        gridBagConstraints.ipadx = 60;
+        jPanel2.add(txtNumero, gridBagConstraints);
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.PAGE_START);
 
-        jPanel3.setBackground(new java.awt.Color(204, 204, 204));
-        jPanel3.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
-
-        btnCalcular.setText("Calcular ");
-        btnCalcular.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCalcularActionPerformed(evt);
+        tablita.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Nombre", "Apellido", "Edad", "Numero"
             }
-        });
-        jPanel3.add(btnCalcular);
+        ));
+        tablita.setRowHeight(20);
+        jScrollPane1.setViewportView(tablita);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 518, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
+        );
 
         getContentPane().add(jPanel3, java.awt.BorderLayout.PAGE_END);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-   
-    
+
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNombreActionPerformed
-    public Activos.TipoActivos informacionDeltipo(){
-        int indice; 
-        indice = cmbTipoActivo.getSelectedIndex()+1;
-        return tipaso.get(indice);
-    }
-    private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
+
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         // TODO add your handling code here:
-      activacion = new Activos(txtNombre.getText(), Float.parseFloat(txtValorActivo.getText())
-              , informacionDeltipo(), Float.parseFloat(txtValorSalvamento.getText()));
-      tablamodelo = (DefaultTableModel) tabluca.getModel();
-      tablamodelo.addRow(activacion.Vector());
-        System.out.println(informacionDeltipo());
-        System.out.println(activacion.toString());
+        Persona personita = new Persona(txtNombre.getText(), txtApellidos.getText(),txtEdad.getText(), txtNumero.getText());
+        lista.add(personita);
+        JOptionPane.showMessageDialog(null, "Datos registrados correctamente!");
+        mostrar();
+        txtNombre.setText("");
+        txtApellidos.setText("");
+        txtEdad.setText("");
+        txtNumero.setText("");
         
-      
-    }//GEN-LAST:event_btnCalcularActionPerformed
+    }//GEN-LAST:event_btnAgregarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -194,27 +190,26 @@ public class MainFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AgendaPersonal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AgendaPersonal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AgendaPersonal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AgendaPersonal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainFrame().setVisible(true);
+                new AgendaPersonal().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCalcular;
-    private javax.swing.JComboBox<String> cmbTipoActivo;
+    private javax.swing.JButton btnAgregar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -223,9 +218,27 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tabluca;
+    private javax.swing.JTable tablita;
+    private javax.swing.JTextField txtApellidos;
+    private javax.swing.JTextField txtEdad;
     private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtValorActivo;
-    private javax.swing.JTextField txtValorSalvamento;
+    private javax.swing.JTextField txtNumero;
     // End of variables declaration//GEN-END:variables
+
+    private void mostrar() {
+        String matris [][] = new  String[lista.size()][4];
+        for (int i = 0; i <lista.size(); i++) {
+            matris[i][0] = lista.get(i).getNombre();
+            matris[i][1] = lista.get(i).getApellido();
+            matris[i][2] = lista.get(i).getEdad();
+            matris[i][3] = lista.get(i).getNumero();
+        }
+        tablita.setModel(new javax.swing.table.DefaultTableModel(
+                matris,
+            
+            new String [] {
+                "Nombre", "Apellido", "Edad", "Numero"
+            }
+        ));
+    }
 }

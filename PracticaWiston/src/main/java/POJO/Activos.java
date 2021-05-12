@@ -5,28 +5,73 @@
  */
 package POJO;
 
+
+
+
 /**
  *
  * @author JADPA18
  */
 public class Activos {
-    private
-    private String nombre , tipoActivo ;
-    private String ValorActivo , ValorSalvamento;
-   
-    public enum TipoActivo {
-        EDIFICIO(20), VEHICULO(5) , MAQUINARIA(8) , MOBILIARIO(2), EQUIPODEOFICINA(1);
-        private int años;
+    
+    private String nombre  ;
+    private float ValorActivo , ValorSalvamento;
+    private TipoActivos tipoActivos;
 
-        private TipoActivo(int tiempo) {
-            años = tiempo;
-        }
-        public int getAños(){
-            return años;
-        }
-        
-    }
    
+    public enum TipoActivos{
+         EDIFICIO, VEHICULO, MAQUINARIA ,MOBILIARIA , EQUIPODEOFICINA
+    }
+    public int anios (){
+        int anio=0;
+        switch(tipoActivos){
+            case EDIFICIO: anio = 20;
+            break;
+            case VEHICULO: anio = 5;
+            break;
+            case MAQUINARIA: anio = 8;
+            break;
+            case MOBILIARIA: anio = 2;
+            break;
+            case EQUIPODEOFICINA : anio = 1;
+            break;
+        }
+        return anio;
+    }
+
+    public Activos(String nombre, float ValorActivo,  TipoActivos tipoActivos, float ValorSalvamento) {
+        this.nombre = nombre;
+        this.ValorActivo = ValorActivo;
+        this.tipoActivos = tipoActivos;
+        this.ValorSalvamento = ValorSalvamento;
+       
+    }
+
+    public float getValorActivo() {
+        return ValorActivo;
+    }
+
+    public void setValorActivo(float ValorActivo) {
+        this.ValorActivo = ValorActivo;
+    }
+
+    public float getValorSalvamento() {
+        return ValorSalvamento;
+    }
+
+    public void setValorSalvamento(float ValorSalvamento) {
+        this.ValorSalvamento = ValorSalvamento;
+    }
+
+    public TipoActivos getTipoActivos() {
+        return tipoActivos;
+    }
+
+    public void setTipoActivos(TipoActivos tipoActivos) {
+        this.tipoActivos = tipoActivos;
+    }
+  
+    
     public String getNombre() {
         return nombre;
     }
@@ -34,47 +79,25 @@ public class Activos {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+   public float depreciacion(){
+       return (ValorActivo-ValorSalvamento) / anios();
+   }
 
-    public String getTipoActivo() {
-        return tipoActivo;
-    }
-
-    public void setTipoActivo(String tipoActivo) {
-        this.tipoActivo = tipoActivo;
-    }
-
-    
-
-    public String getValorActivo() {
-        return ValorActivo;
-    }
-
-    public void setValorActivo(String ValorActivo) {
-        this.ValorActivo = ValorActivo;
-    }
-
-    public String getValorSalvamento() {
-        return ValorSalvamento;
-    }
-
-    public void setValorSalvamento(String ValorSalvamento) {
-        this.ValorSalvamento = ValorSalvamento;
-    }
-
-    public Activos(String nombre, String tipoActivo, String ValorActivo, String ValorSalvamento) {
-        this.nombre = nombre;
-        this.tipoActivo = tipoActivo;
-        this.ValorActivo = ValorActivo;
-        this.ValorSalvamento = ValorSalvamento;
-    }
- 
-    
     public Activos() {
     }
 
     @Override
     public String toString() {
-        return "Activos{" + "nombre=" + nombre + ", tipoActivo=" + tipoActivo + ", ValorActivo=" + ValorActivo + ", ValorSalvamento=" + ValorSalvamento + '}';
+        return "Activos{" + "nombre=" + nombre + ", ValorActivo=" + ValorActivo + ", ValorSalvamento=" + ValorSalvamento + ", tipoActivos=" + tipoActivos + anios() + '}';
     }
+    public Object[] Vector(){
+        Object[] obj = new Object[anios()+1];
+        obj[0] = nombre; 
+        for(int i = 1 ; i <obj.length; i++){
+            obj[i]= depreciacion();
+        }
+        return obj;
+    }
+  
     
 }
